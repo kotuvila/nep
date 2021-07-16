@@ -161,6 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         OwenIt\Auditing\AuditingServiceProvider::class,
         
@@ -194,6 +195,14 @@ return [
         ApprovalItem\Providers\ApprovalItemServiceProvider::class,
         CrimeReport\Providers\RouteServiceProvider::class,
         CrimeReport\Providers\CrimeReportServiceProvider::class,
+        Environment\Providers\RouteServiceProvider::class,
+        Environment\Providers\EnvironmentServiceProvider::class,
+        LandParcel\Providers\RouteServiceProvider::class,
+        LandParcel\Providers\LandServiceProvider::class,
+        Reporting\Providers\RouteServiceProvider::class,
+        Reporting\Providers\ReportingServiceProvider::class,
+        Security\Providers\RouteServiceProvider::class,
+        Security\Providers\SecurityServiceProvider::class
     ],
     /*
     |--------------------------------------------------------------------------
@@ -231,6 +240,7 @@ return [
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
         'Password' => Illuminate\Support\Facades\Password::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
         'Redis' => Illuminate\Support\Facades\Redis::class,

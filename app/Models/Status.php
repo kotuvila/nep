@@ -23,7 +23,15 @@ class Status extends Model
         return $this->hasMany('App\Models\Tree_Removal_Request');
     }
 
+    public function environment_restorations(){
+        return $this->hasMany('App\Models\Environment_Restoration');
+    }
+
     public function Crime_Reports(){
         return $this->hasMany('App\Models\Crime_Report');
+    }
+
+    public function land_parcels(){
+        return $this->hasMany('App\Models\Land_Parcel');
     }
 }

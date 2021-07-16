@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Environment_Restoration_Species extends Model
+class Environment_Restoration_Species extends Model implements Auditable
 {
     use HasFactory;
     protected $table = "environment_restoration_species";
+    use \OwenIt\Auditing\Auditable;
+
     protected $fillable = [
         'environment_restoration_activity_id',
-        'species_information_id',
+        'species_id',
         'height',
         'dimensions',
         'quantity',
@@ -33,9 +36,7 @@ class Environment_Restoration_Species extends Model
         return $this->belongsTo('App\Models\Environment_Restoration');
     }
 
-    public function species_information(){
-        return $this->belongsTo('App\Models\Species_Information');
+    public function Species(){
+        return $this->belongsTo('App\Models\Species');
     }
-
-
 }

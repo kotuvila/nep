@@ -1,16 +1,7 @@
-@extends('home')
+@extends('adminorg')
 
-@section('cont')
-<br>
-<h4 class="p-3 display-6" style="display:inline">Organization Management</h4>
-<input type="text" style=" float: right; padding: 6px; margin-top: 4px; margin-right: 16px;border: none;font-size: 17px;" placeholder="Search..." size="30">
-<br>
-<br>
-<hr>
+@section('admin')
 <div class="flex row border-secondary rounded-lg ml-3 justify-content-between">
-    <span>
-        <h5 class="p-3">Organization Details</h5>
-    </span>
     <!-- Sessions to display success or failure -->
     <span>
         <h3 class="text-center bg-success text-light">{{session('message')}}</h3>
@@ -20,9 +11,9 @@
     </span>
     <span>
         <!-- opens the create view -->
-        <a href="/organization/create" class="btn btn-info mr-4" role="button">Create Organization</a>
+        <a href="/organization/create1" class="btn btn-info mr-4" role="button">Create Organization</a>
     </span>
-    <table class="table table-light table-striped border-secondary rounded-lg mr-4">
+    <table class="table table-light table-striped border-secondary rounded-lg mt-2 mr-4">
         <thead>
             <tr>
             <th scope="col">ID</th>

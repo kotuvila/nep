@@ -3,93 +3,108 @@
 @section('cont')
 
 <kbd><a href="/approval-item/showRequests" class="text-white font-weight-bolder"><i class="fas fa-chevron-left"></i></i> BACK</a></kbd>
+<hr>
+<div class="container">
+    <dl class="row">
+        <dt class="col-sm-3">Title:</dt>
+        <dd class="col-sm-9">{{$development_project->title}}</dd>
 
-<div class="container border bg-light">
-    <form>
-        <div class="input-group mb-3 mt-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Title</span>
-            </div>
-            <input type="text" class="form-control" placeholder="{{$development_project->title}}" readonly>
-        </div>
+        <dt class="col-sm-3">Province:</dt>
+        <dd class="col-sm-9">{{$land->province->province}}</dd>
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Category</span>
-            </div>
-            <input type="text" class="form-control" placeholder="Development Project" readonly>
-        </div>
+        <dt class="col-sm-3">District:</dt>
+        <dd class="col-sm-9">{{$land->district->district}}</dd>
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Gazette</span>
-            </div>
-            <input type="text" class="form-control" placeholder="{{$development_project->gazette->title}}" readonly>
-        </div>
+        <dt class="col-sm-3">Grama Sevaka Division:</dt>
+        <dd class="col-sm-9">{{$land->gs_division->gs_division}}</dd>
 
+        <dt class="col-sm-3">Category:</dt>
+        <dd class="col-sm-9">Development Project</dd>
 
-        <div class="form-check border-secondary rounded-lg mb-3" style="background-color:#ebeef0">
-            <label class="mt-2"> Governing Organizations: </label>
-            <hr>
+        <dt class="col-sm-3">Gazette:</dt>
+        <dd class="col-sm-9">{{$development_project->gazette->title}}</dd>
+
+        <dt class="col-sm-3">Governing Organizations:</dt>
+        <dd class="col-sm-9">
             <ul class="list-unstyled">
                 @foreach($development_project->governing_organizations as $governing_organization)
                 @switch($governing_organization)
                 @case(1)
-                <li class="ml-5">Reforest Sri Lanka</li>
+                <li>Reforest Sri Lanka</li>
                 @break
                 @case(2)
-                <li class="ml-5">Ministry of Environment</li>
+                <li>Ministry of Environment</li>
                 @break
                 @case(3)
-                <li class="ml-5">Central Environmental Authority</li>
+                <li>Central Environmental Authority</li>
                 @break
                 @case(4)
-                <li class="ml-5">Ministry of Wildlife</li>
+                <li>Ministry of Wildlife</li>
                 @break
                 @case(5)
-                <li class="ml-5">Road Development Authority</li>
+                <li>Road Development Authority</li>
                 @break
                 @endswitch
                 @endforeach
             </ul>
-        </div>
+        </dd>
 
+        <dt class="col-sm-3">Request Org:</dt>
+        <!-- @if($process->request_organization) -->
+        <dd class="col-sm-9">{{$process->requesting_organization->title}}</dd>
+        <!-- @else
+        <dd class="col-sm-9">{{$process->other_land_owner_name}}</dd>
+        @endif -->
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Logs</span>
-            </div>
-            @if($development_project->logs == 0)
-            <input type="text" class="form-control" placeholder="No logs" readonly>
-            @else
-            <input type="text" class="form-control" placeholder="CONFIGURE CODE TO SHOW LOGS NOT DONE - CURRENTLY SAVING COORDINATES HERE" readonly>
-            @endif
-        </div>
+        <dt class="col-sm-3">Request to Org:</dt>
+        <!-- @if($process->activity_organization) -->
+        <dd class="col-sm-9">{{$process->Activity_organization->title}}</dd>
+        <!-- @else
+        <dd class="col-sm-9">{{$process->other_removal_requestor_name}}</dd>
+        @endif -->
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Land Parcel</span>
-            </div>
-            <input type="text" class="form-control" placeholder="{{$development_project->land_parcel->title}}" readonly>
-        </div>
+        <dt class="col-sm-3">Logs:</dt>
+        @if($development_project->logs == 0)
+        <dd class="col-sm-9">No Logs</dd>
+        @else
+        <dd class="col-sm-9">{{$development_project->logs}}</dd>
+        @endif
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Status</span>
-            </div>
-            <input type="text" class="form-control" placeholder="{{$development_project->status->type}}" readonly>
-        </div>
+        <dt class="col-sm-3">Plan Number:</dt>
+        <dd class="col-sm-9">{{$development_project->land_parcel->title}}</dd>
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Created at</span>
-            </div>
-            <input type="text" class="form-control" placeholder="{{$development_project->created_at}}" readonly>
-        </div>
+        <dt class="col-sm-3">Surveyor Name:</dt>
+        <dd class="col-sm-9">{{$development_project->land_parcel->surveyor_name}}</dd>
 
+        <dt class="col-sm-3">Status:</dt>
+        <dd class="col-sm-9">{{$development_project->status->type}}</dd>
+
+        <dt class="col-sm-3">Created at:</dt>
+        <dd class="col-sm-9">{{$development_project->created_at}}</dd>
+
+        <dt class="col-sm-3">Active User:</dt>
+        @if($process->activity_user_id == NULL)
+        <dd class="col-sm-9">No User Assigned Yet</dd>
+        @else
+        <dd class="col-sm-9">{{$process->activity_user->name}}</dd>
+        @endif
+    </dl>
+    <div class="border border-dark border-rounded">
         <div id="mapid" style="height:400px;" name="map"></div>
-    </form>
+    </div>
+    @if($process->status_id < 2) 
+    <div class="mt-3" style="float:right;">
+        <!-- <a class="btn btn-outline-warning" href="/dev-project/edit/{{$process->id}}/{{$development_project->id}}/{{$land->id}}">Edit</a> -->
+        <button class="btn btn-outline-danger" onclick="if (confirm('Are you sure you wish to delete this request and all it\'s related data?')){
+            event.preventDefault();
+            document.getElementById('form-delete-{{$process->id}}').submit()}">Delete</button>
 
+        <form id="{{'form-delete-'.$process->id}}" style="display:none" method="post" action="/dev-project/delete/{{$process->id}}/{{$development_project->id}}/{{$land->id}}">
+            @csrf
+            @method('delete');
+        </form>
+</div>
+@endif
 </div>
 
 
@@ -107,15 +122,16 @@
             maxZoom: 18
         }).addTo(map);
 
-    // add a marker in the given location
-    L.marker(center).addTo(map);
 
     //FROM LARAVEL THE COORDINATES ARE BEING TAKEN TO THE SCRIPT AND CONVERTED TO JSON
     var polygon = @json($polygon);
     console.log(polygon);
 
     //ADDING THE JSOON COORDINATES TO MAP
-    L.geoJSON(JSON.parse(polygon)).addTo(map);
-    
+    var layer = L.geoJSON(JSON.parse(polygon)).addTo(map);
+
+    // Adjust map to show the kml
+    var bounds = layer.getBounds();
+    map.fitBounds(bounds);
 </script>
 @endsection
